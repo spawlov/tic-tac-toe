@@ -4,7 +4,7 @@ from PyQt6 import QtWidgets, QtGui
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QFrame
 
-from x_o import Ui_Form
+from x_o import UiForm
 
 
 class MyGame(QtWidgets.QWidget):
@@ -13,7 +13,7 @@ class MyGame(QtWidgets.QWidget):
         super(MyGame, self).__init__()
         self.board = []
         self._counter = 0
-        self.ui = Ui_Form()
+        self.ui = UiForm()
         self.ui.setupUi(self)
         self.setWindowIcon(QIcon('media/icons/sf.ico'))
         self.setWindowTitle('Game Tic-Tac-Toe (for "Skill Factory")')

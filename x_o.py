@@ -1,7 +1,24 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
+class UiForm(object):
+    def __init__(self):
+        self.gridLayoutWidget_2 = None
+        self.gridLayout_2 = None
+        self.pBtn_1 = None
+        self.pBtn_2 = None
+        self.pBtn_3 = None
+        self.pBtn_4 = None
+        self.pBtn_5 = None
+        self.pBtn_6 = None
+        self.pBtn_7 = None
+        self.pBtn_8 = None
+        self.pBtn_9 = None
+        self.pBtn_10 = None
+        self.gridLayout = None
+        self.gridLayoutWidget = None
+        self.label = None
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(381, 402)
@@ -222,20 +239,20 @@ class Ui_Form(object):
         self.pBtn_9.setObjectName("pBtn_9")
         self.gridLayout_2.addWidget(self.pBtn_9, 2, 2, 1, 1)
 
-        self.retranslateUi(Form)
+        self.re_translate_ui(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def retranslateUi(self, Form):
+    def re_translate_ui(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "Текст"))
+        self.label.setText(_translate("Form", " "))
         self.pBtn_10.setText(_translate("Form", "Сначала"))
-        self.pBtn_2.setText(_translate("Form", "X"))
-        self.pBtn_4.setText(_translate("Form", "X"))
-        self.pBtn_5.setText(_translate("Form", "X"))
-        self.pBtn_6.setText(_translate("Form", "X"))
-        self.pBtn_1.setText(_translate("Form", "X"))
-        self.pBtn_3.setText(_translate("Form", "X"))
-        self.pBtn_7.setText(_translate("Form", "X"))
-        self.pBtn_8.setText(_translate("Form", "X"))
-        self.pBtn_9.setText(_translate("Form", "X"))
+        self.pBtn_2.setText(_translate("Form", " "))
+        self.pBtn_4.setText(_translate("Form", " "))
+        self.pBtn_5.setText(_translate("Form", " "))
+        self.pBtn_6.setText(_translate("Form", " "))
+        self.pBtn_1.setText(_translate("Form", " "))
+        self.pBtn_3.setText(_translate("Form", " "))
+        self.pBtn_7.setText(_translate("Form", " "))
+        self.pBtn_8.setText(_translate("Form", " "))
+        self.pBtn_9.setText(_translate("Form", " "))
