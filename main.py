@@ -10,32 +10,15 @@ class MyGame(QtWidgets.QWidget):
 
     def __init__(self):
         super(MyGame, self).__init__()
-        self._board = []
+        self.board = []
         self._counter = 0
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setWindowIcon(QIcon('media/icons/sf.ico'))
         self.setWindowTitle('Game Tic-Tac-Toe (for "Skill Factory")')
 
-        self.reset_game()
-
-        self.draw_board(self._board)
-        self.label_message()
-
-        self.ui.pBtn_1.clicked.connect(self.btn_1)
-        self.ui.pBtn_2.clicked.connect(self.btn_2)
-        self.ui.pBtn_3.clicked.connect(self.btn_3)
-        self.ui.pBtn_4.clicked.connect(self.btn_4)
-        self.ui.pBtn_5.clicked.connect(self.btn_5)
-        self.ui.pBtn_6.clicked.connect(self.btn_6)
-        self.ui.pBtn_7.clicked.connect(self.btn_7)
-        self.ui.pBtn_8.clicked.connect(self.btn_8)
-        self.ui.pBtn_9.clicked.connect(self.btn_9)
-
-        self.ui.pBtn_10.clicked.connect(self.btn_10)
-
     def reset_game(self):
-        self._board = [' ' for _ in range(9)]
+        self.board = [' ' for _ in range(9)]
         self._counter = 0
         self.ui.pBtn_1.setEnabled(True)
         self.ui.pBtn_2.setEnabled(True)
@@ -49,7 +32,7 @@ class MyGame(QtWidgets.QWidget):
         self.redraw()
 
     def redraw(self):
-        self.draw_board(self._board)
+        self.draw_board(self.board)
         self.label_message()
         self.check_winner()
 
@@ -72,90 +55,90 @@ class MyGame(QtWidgets.QWidget):
 
     def btn_1(self):
         if not self._counter % 2:
-            self._board[0] = 'X'
+            self.board[0] = 'X'
             self._counter += 1
         else:
-            self._board[0] = 'O'
+            self.board[0] = 'O'
             self._counter += 1
         self.ui.pBtn_1.setEnabled(False)
         self.redraw()
 
     def btn_2(self):
         if not self._counter % 2:
-            self._board[1] = 'X'
+            self.board[1] = 'X'
             self._counter += 1
         else:
-            self._board[1] = 'O'
+            self.board[1] = 'O'
             self._counter += 1
         self.ui.pBtn_2.setEnabled(False)
         self.redraw()
 
     def btn_3(self):
         if not self._counter % 2:
-            self._board[2] = 'X'
+            self.board[2] = 'X'
             self._counter += 1
         else:
-            self._board[2] = 'O'
+            self.board[2] = 'O'
             self._counter += 1
         self.ui.pBtn_3.setEnabled(False)
         self.redraw()
 
     def btn_4(self):
         if not self._counter % 2:
-            self._board[3] = 'X'
+            self.board[3] = 'X'
             self._counter += 1
         else:
-            self._board[3] = 'O'
+            self.board[3] = 'O'
             self._counter += 1
         self.ui.pBtn_4.setEnabled(False)
         self.redraw()
 
     def btn_5(self):
         if not self._counter % 2:
-            self._board[4] = 'X'
+            self.board[4] = 'X'
             self._counter += 1
         else:
-            self._board[4] = 'O'
+            self.board[4] = 'O'
             self._counter += 1
         self.ui.pBtn_5.setEnabled(False)
         self.redraw()
 
     def btn_6(self):
         if not self._counter % 2:
-            self._board[5] = 'X'
+            self.board[5] = 'X'
             self._counter += 1
         else:
-            self._board[5] = 'O'
+            self.board[5] = 'O'
             self._counter += 1
         self.ui.pBtn_6.setEnabled(False)
         self.redraw()
 
     def btn_7(self):
         if not self._counter % 2:
-            self._board[6] = 'X'
+            self.board[6] = 'X'
             self._counter += 1
         else:
-            self._board[6] = 'O'
+            self.board[6] = 'O'
             self._counter += 1
         self.ui.pBtn_7.setEnabled(False)
         self.redraw()
 
     def btn_8(self):
         if not self._counter % 2:
-            self._board[7] = 'X'
+            self.board[7] = 'X'
             self._counter += 1
         else:
-            self._board[7] = 'O'
+            self.board[7] = 'O'
             self._counter += 1
         self.ui.pBtn_8.setEnabled(False)
         self.redraw()
 
     def btn_9(self):
         if not self._counter % 2:
-            self._board[8] = 'X'
+            self.board[8] = 'X'
             self._counter += 1
         else:
-            self._board[8] = 'O'
+            self.board[8] = 'O'
             self._counter += 1
         self.ui.pBtn_9.setEnabled(False)
         self.redraw()
@@ -175,15 +158,15 @@ class MyGame(QtWidgets.QWidget):
             (2, 4, 6)
         )
         for line in line_to_win:
-            if (self._board[line[0]] ==
-                self._board[line[1]] ==
-                self._board[line[2]] == 'X') \
+            if (self.board[line[0]] ==
+                self.board[line[1]] ==
+                self.board[line[2]] == 'X') \
                     or \
-                    (self._board[line[0]] ==
-                     self._board[line[1]] ==
-                     self._board[line[2]] == 'O'):
+                    (self.board[line[0]] ==
+                     self.board[line[1]] ==
+                     self.board[line[2]] == 'O'):
                 self.ui.label.setText(f'ПОБЕДА: "'
-                                      f'{str(self._board[line[0]])}'
+                                      f'{str(self.board[line[0]])}'
                                       f'" !!!')
                 self.ui.pBtn_1.setEnabled(False)
                 self.ui.pBtn_2.setEnabled(False)
@@ -203,5 +186,22 @@ if __name__ == '__main__':
 
     game = MyGame()
     game.show()
+
+    game.reset_game()
+
+    game.draw_board(game.board)
+    game.label_message()
+
+    game.ui.pBtn_1.clicked.connect(game.btn_1)
+    game.ui.pBtn_2.clicked.connect(game.btn_2)
+    game.ui.pBtn_3.clicked.connect(game.btn_3)
+    game.ui.pBtn_4.clicked.connect(game.btn_4)
+    game.ui.pBtn_5.clicked.connect(game.btn_5)
+    game.ui.pBtn_6.clicked.connect(game.btn_6)
+    game.ui.pBtn_7.clicked.connect(game.btn_7)
+    game.ui.pBtn_8.clicked.connect(game.btn_8)
+    game.ui.pBtn_9.clicked.connect(game.btn_9)
+
+    game.ui.pBtn_10.clicked.connect(game.btn_10)
 
     sys.exit(app.exec())
