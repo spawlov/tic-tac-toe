@@ -1,7 +1,8 @@
 import sys
 
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtGui
 from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QFrame
 
 from x_o import Ui_Form
 
@@ -17,6 +18,13 @@ class MyGame(QtWidgets.QWidget):
         self.setWindowIcon(QIcon('media/icons/sf.ico'))
         self.setWindowTitle('Game Tic-Tac-Toe (for "Skill Factory")')
 
+        self.ui.label.setFrameShape(QFrame.Shape.StyledPanel)
+        self.ui.label.setStyleSheet('QLabel{color: red;}')
+        myFont = QtGui.QFont()
+        myFont.setFamily('Calibri, Tahoma, Arial, Helvetica')
+        myFont.setPointSizeF(14)
+        self.ui.label.setFont(myFont)
+
     def reset_game(self):
         self.board = [' ' for _ in range(9)]
         self._counter = 0
@@ -29,6 +37,7 @@ class MyGame(QtWidgets.QWidget):
         self.ui.pBtn_7.setEnabled(True)
         self.ui.pBtn_8.setEnabled(True)
         self.ui.pBtn_9.setEnabled(True)
+        self.ui.label.setStyleSheet('QLabel{color: black;}')
         self.redraw()
 
     def redraw(self):
@@ -165,10 +174,11 @@ class MyGame(QtWidgets.QWidget):
                     (self.board[line[0]] ==
                      self.board[line[1]] ==
                      self.board[line[2]] == 'O'):
+                self.ui.label.setStyleSheet('QLabel{color: red;}')
                 self.ui.label.setText(
                     f'Победили "'
                     f'{"Крестики" if self.board[line[0]] == "X" else "Нолики"}'
-                    f'"!')
+                    f'"')
                 self.ui.pBtn_1.setEnabled(False)
                 self.ui.pBtn_2.setEnabled(False)
                 self.ui.pBtn_3.setEnabled(False)
@@ -179,6 +189,7 @@ class MyGame(QtWidgets.QWidget):
                 self.ui.pBtn_8.setEnabled(False)
                 self.ui.pBtn_9.setEnabled(False)
             elif self._counter == 9:
+                self.ui.label.setStyleSheet('QLabel{color: blue;}')
                 self.ui.label.setText('Ничья')
 
 
