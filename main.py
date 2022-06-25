@@ -38,9 +38,9 @@ class MyGame(QtWidgets.QWidget):
 
     def label_message(self):
         if not self._counter % 2:
-            self.ui.label.setText('Сейчас ход "X"')
+            self.ui.label.setText('Сейчас ход "Крестиков"')
         else:
-            self.ui.label.setText('Сейчас ход "O"')
+            self.ui.label.setText('Сейчас ход "Ноликов"')
 
     def draw_board(self, board):
         self.ui.pBtn_1.setText(board[0])
@@ -165,9 +165,10 @@ class MyGame(QtWidgets.QWidget):
                     (self.board[line[0]] ==
                      self.board[line[1]] ==
                      self.board[line[2]] == 'O'):
-                self.ui.label.setText(f'ПОБЕДА: "'
-                                      f'{str(self.board[line[0]])}'
-                                      f'" !!!')
+                self.ui.label.setText(
+                    f'Победили "'
+                    f'{"Крестики" if self.board[line[0]] == "X" else "Нолики"}'
+                    f'"!')
                 self.ui.pBtn_1.setEnabled(False)
                 self.ui.pBtn_2.setEnabled(False)
                 self.ui.pBtn_3.setEnabled(False)
