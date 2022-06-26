@@ -45,8 +45,8 @@ class MyGame(QtWidgets.QWidget):
             self.ui.label.setText('Сейчас ход "Ноликов"')
 
     def draw_board(self, board):
-        for i in range(1, 10):
-            exec('self.ui.pBtn_' + str(i) +
+        for btn_i in range(1, 10):
+            exec('self.ui.pBtn_' + str(btn_i) +
                  '.setText(board[' + str(i - 1) + '])')
 
     def btn_1(self):
@@ -163,8 +163,8 @@ class MyGame(QtWidgets.QWidget):
                      '.setStyleSheet("color: red;")')
                 exec('self.ui.pBtn_' + str(line[2] + 1) +
                      '.setStyleSheet("color: red;")')
-                for i in range(1, 10):
-                    exec('self.ui.pBtn_' + str(i) + '.setEnabled(False)')
+                for en in range(1, 10):
+                    exec('self.ui.pBtn_' + str(en) + '.setEnabled(False)')
                 break
             if self._counter == 9:
                 self.ui.label.setStyleSheet('color: blue;')
@@ -173,15 +173,12 @@ class MyGame(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-
     game = MyGame()
     game.show()
 
     game.reset_game()
-
     game.draw_board(game.board)
     game.label_message()
-
     for i in range(1, 11):
         exec('game.ui.pBtn_'+str(i)+'.clicked.connect(game.btn_'+str(i)+')')
 
