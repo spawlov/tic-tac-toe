@@ -65,91 +65,82 @@ class MyGame(QtWidgets.QWidget):
     def btn_1(self):
         if not self._counter % 2:
             self.board[0] = 'X'
-            self._counter += 1
         else:
             self.board[0] = 'O'
-            self._counter += 1
         self.ui.pBtn_1.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_2(self):
         if not self._counter % 2:
             self.board[1] = 'X'
-            self._counter += 1
         else:
             self.board[1] = 'O'
-            self._counter += 1
         self.ui.pBtn_2.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_3(self):
         if not self._counter % 2:
             self.board[2] = 'X'
-            self._counter += 1
         else:
             self.board[2] = 'O'
-            self._counter += 1
         self.ui.pBtn_3.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_4(self):
         if not self._counter % 2:
             self.board[3] = 'X'
-            self._counter += 1
         else:
             self.board[3] = 'O'
-            self._counter += 1
         self.ui.pBtn_4.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_5(self):
         if not self._counter % 2:
             self.board[4] = 'X'
-            self._counter += 1
         else:
             self.board[4] = 'O'
-            self._counter += 1
         self.ui.pBtn_5.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_6(self):
         if not self._counter % 2:
             self.board[5] = 'X'
-            self._counter += 1
         else:
             self.board[5] = 'O'
-            self._counter += 1
         self.ui.pBtn_6.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_7(self):
         if not self._counter % 2:
             self.board[6] = 'X'
-            self._counter += 1
         else:
             self.board[6] = 'O'
-            self._counter += 1
         self.ui.pBtn_7.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_8(self):
         if not self._counter % 2:
             self.board[7] = 'X'
-            self._counter += 1
         else:
             self.board[7] = 'O'
-            self._counter += 1
         self.ui.pBtn_8.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_9(self):
         if not self._counter % 2:
             self.board[8] = 'X'
-            self._counter += 1
         else:
             self.board[8] = 'O'
-            self._counter += 1
         self.ui.pBtn_9.setEnabled(False)
+        self._counter += 1
         self.redraw()
 
     def btn_10(self):
@@ -188,7 +179,8 @@ class MyGame(QtWidgets.QWidget):
                 self.ui.pBtn_7.setEnabled(False)
                 self.ui.pBtn_8.setEnabled(False)
                 self.ui.pBtn_9.setEnabled(False)
-            elif self._counter == 9:
+                break
+            if self._counter == 9:
                 self.ui.label.setStyleSheet('QLabel{color: blue;}')
                 self.ui.label.setText('Ничья')
 
