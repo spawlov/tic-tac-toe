@@ -19,7 +19,6 @@ class MyGame(QtWidgets.QWidget):
         self.setWindowTitle('Game Tic-Tac-Toe (for "Skill Factory")')
 
         self.ui.label.setFrameShape(QFrame.Shape.StyledPanel)
-        self.ui.label.setStyleSheet('QLabel{color: red;}')
         myFont = QtGui.QFont()
         myFont.setFamily('Calibri, Tahoma, Arial, Helvetica')
         myFont.setPointSizeF(14)
@@ -31,7 +30,7 @@ class MyGame(QtWidgets.QWidget):
         for i in range(1, 10):
             exec('self.ui.pBtn_' + str(i) + '.setEnabled(True)')
             exec('self.ui.pBtn_' + str(i) + '.setStyleSheet("color: black;")')
-        self.ui.label.setStyleSheet('QLabel{color: black;}')
+        self.ui.label.setStyleSheet('color: black;')
         self.redraw()
 
     def redraw(self):
@@ -153,7 +152,7 @@ class MyGame(QtWidgets.QWidget):
                     (self.board[line[0]] ==
                      self.board[line[1]] ==
                      self.board[line[2]] == 'O'):
-                self.ui.label.setStyleSheet('QLabel{color: red;}')
+                self.ui.label.setStyleSheet('color: red;')
                 self.ui.label.setText(
                     f'Победили "'
                     f'{"Крестики" if self.board[line[0]] == "X" else "Нолики"}'
@@ -168,7 +167,7 @@ class MyGame(QtWidgets.QWidget):
                     exec('self.ui.pBtn_' + str(i) + '.setEnabled(False)')
                 break
             if self._counter == 9:
-                self.ui.label.setStyleSheet('QLabel{color: blue;}')
+                self.ui.label.setStyleSheet('color: blue;')
                 self.ui.label.setText('Ничья')
 
 
