@@ -16,7 +16,7 @@ class MyGame(QtWidgets.QWidget):
         self.ui = UiForm()
         self.ui.setupUi(self)
         self.setWindowIcon(QIcon('media/icons/sf.ico'))
-        self.setWindowTitle('Game Tic-Tac-Toe (for "Skill Factory")')
+        self.setWindowTitle('Game Tic-Tac-Toe ("Skill Factory" B5.6)')
 
         self.ui.label.setFrameShape(QFrame.Shape.StyledPanel)
         myFont = QtGui.QFont()
