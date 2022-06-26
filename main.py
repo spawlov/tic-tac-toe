@@ -47,7 +47,7 @@ class MyGame(QtWidgets.QWidget):
     def draw_board(self, board):
         for btn_i in range(1, 10):
             exec('self.ui.pBtn_' + str(btn_i) +
-                 '.setText(board[' + str(i - 1) + '])')
+                 '.setText(board[' + str(btn_i - 1) + '])')
 
     def btn_1(self):
         if not self._counter % 2:
@@ -145,6 +145,7 @@ class MyGame(QtWidgets.QWidget):
             (2, 4, 6)
         )
         for line in line_to_win:
+            print(line)
             if (self.board[line[0]] ==
                 self.board[line[1]] ==
                 self.board[line[2]] == 'X') \
