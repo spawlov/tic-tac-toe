@@ -133,6 +133,17 @@ class MyGame(QtWidgets.QWidget):
     def btn_10(self):
         self.reset_game()
 
+    def line_light(self, cells):
+        print(cells)
+        exec('self.ui.pBtn_' + str(cells[0] + 1) +
+             '.setStyleSheet("color: red;")')
+        exec('self.ui.pBtn_' + str(cells[1] + 1) +
+             '.setStyleSheet("color: red;")')
+        exec('self.ui.pBtn_' + str(cells[2] + 1) +
+             '.setStyleSheet("color: red;")')
+        for en in range(1, 10):
+            exec('self.ui.pBtn_' + str(en) + '.setEnabled(False)')
+
     def check_winner(self):
         line_to_win = (
             (0, 1, 2),
@@ -144,27 +155,20 @@ class MyGame(QtWidgets.QWidget):
             (0, 4, 8),
             (2, 4, 6)
         )
+        x_list = [bool(cell == 'X') for cell in self.board]
+        o_list = [bool(cell == 'O') for cell in self.board]
         for line in line_to_win:
-            if (self.board[line[0]] ==
-                self.board[line[1]] ==
-                self.board[line[2]] == 'X') \
-                    or \
-                    (self.board[line[0]] ==
-                     self.board[line[1]] ==
-                     self.board[line[2]] == 'O'):
+            if all([x_list[line[0]], x_list[line[1]], x_list[line[2]]]):
+                print('Win X')
                 self.ui.label.setStyleSheet('color: red;')
-                self.ui.label.setText(
-                    f'Победили "'
-                    f'{"Крестики" if self.board[line[0]] == "X" else "Нолики"}'
-                    f'"')
-                exec('self.ui.pBtn_' + str(line[0] + 1) +
-                     '.setStyleSheet("color: red;")')
-                exec('self.ui.pBtn_' + str(line[1] + 1) +
-                     '.setStyleSheet("color: red;")')
-                exec('self.ui.pBtn_' + str(line[2] + 1) +
-                     '.setStyleSheet("color: red;")')
-                for en in range(1, 10):
-                    exec('self.ui.pBtn_' + str(en) + '.setEnabled(False)')
+                self.ui.label.setText('Победили "Крестики"')
+                self.line_light(cells=line)
+                break
+            elif all([o_list[line[0]], o_list[line[1]], o_list[line[2]]]):
+                print('Win O')
+                self.ui.label.setStyleSheet('color: red;')
+                self.ui.label.setText('Победили "Нолики"')
+                self.line_light(cells=line)
                 break
             if self._counter == 9:
                 self.ui.label.setStyleSheet('color: blue;')
