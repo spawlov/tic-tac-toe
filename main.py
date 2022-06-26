@@ -28,15 +28,9 @@ class MyGame(QtWidgets.QWidget):
     def reset_game(self):
         self.board = [' ' for _ in range(9)]
         self._counter = 0
-        self.ui.pBtn_1.setEnabled(True)
-        self.ui.pBtn_2.setEnabled(True)
-        self.ui.pBtn_3.setEnabled(True)
-        self.ui.pBtn_4.setEnabled(True)
-        self.ui.pBtn_5.setEnabled(True)
-        self.ui.pBtn_6.setEnabled(True)
-        self.ui.pBtn_7.setEnabled(True)
-        self.ui.pBtn_8.setEnabled(True)
-        self.ui.pBtn_9.setEnabled(True)
+        for i in range(1, 10):
+            exec('self.ui.pBtn_' + str(i) + '.setEnabled(True)')
+            exec('self.ui.pBtn_' + str(i) + '.setStyleSheet("color: black;")')
         self.ui.label.setStyleSheet('QLabel{color: black;}')
         self.redraw()
 
@@ -52,15 +46,9 @@ class MyGame(QtWidgets.QWidget):
             self.ui.label.setText('Сейчас ход "Ноликов"')
 
     def draw_board(self, board):
-        self.ui.pBtn_1.setText(board[0])
-        self.ui.pBtn_2.setText(board[1])
-        self.ui.pBtn_3.setText(board[2])
-        self.ui.pBtn_4.setText(board[3])
-        self.ui.pBtn_5.setText(board[4])
-        self.ui.pBtn_6.setText(board[5])
-        self.ui.pBtn_7.setText(board[6])
-        self.ui.pBtn_8.setText(board[7])
-        self.ui.pBtn_9.setText(board[8])
+        for i in range(1, 10):
+            exec('self.ui.pBtn_' + str(i) +
+                 '.setText(board[' + str(i - 1) + '])')
 
     def btn_1(self):
         if not self._counter % 2:
@@ -170,15 +158,14 @@ class MyGame(QtWidgets.QWidget):
                     f'Победили "'
                     f'{"Крестики" if self.board[line[0]] == "X" else "Нолики"}'
                     f'"')
-                self.ui.pBtn_1.setEnabled(False)
-                self.ui.pBtn_2.setEnabled(False)
-                self.ui.pBtn_3.setEnabled(False)
-                self.ui.pBtn_4.setEnabled(False)
-                self.ui.pBtn_5.setEnabled(False)
-                self.ui.pBtn_6.setEnabled(False)
-                self.ui.pBtn_7.setEnabled(False)
-                self.ui.pBtn_8.setEnabled(False)
-                self.ui.pBtn_9.setEnabled(False)
+                exec('self.ui.pBtn_' + str(line[0] + 1) +
+                     '.setStyleSheet("color: red;")')
+                exec('self.ui.pBtn_' + str(line[1] + 1) +
+                     '.setStyleSheet("color: red;")')
+                exec('self.ui.pBtn_' + str(line[2] + 1) +
+                     '.setStyleSheet("color: red;")')
+                for i in range(1, 10):
+                    exec('self.ui.pBtn_' + str(i) + '.setEnabled(False)')
                 break
             if self._counter == 9:
                 self.ui.label.setStyleSheet('QLabel{color: blue;}')
@@ -196,16 +183,7 @@ if __name__ == '__main__':
     game.draw_board(game.board)
     game.label_message()
 
-    game.ui.pBtn_1.clicked.connect(game.btn_1)
-    game.ui.pBtn_2.clicked.connect(game.btn_2)
-    game.ui.pBtn_3.clicked.connect(game.btn_3)
-    game.ui.pBtn_4.clicked.connect(game.btn_4)
-    game.ui.pBtn_5.clicked.connect(game.btn_5)
-    game.ui.pBtn_6.clicked.connect(game.btn_6)
-    game.ui.pBtn_7.clicked.connect(game.btn_7)
-    game.ui.pBtn_8.clicked.connect(game.btn_8)
-    game.ui.pBtn_9.clicked.connect(game.btn_9)
-
-    game.ui.pBtn_10.clicked.connect(game.btn_10)
+    for i in range(1, 11):
+        exec('game.ui.pBtn_'+str(i)+'.clicked.connect(game.btn_'+str(i)+')')
 
     sys.exit(app.exec())
