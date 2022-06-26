@@ -145,7 +145,6 @@ class MyGame(QtWidgets.QWidget):
             (2, 4, 6)
         )
         for line in line_to_win:
-            print(line)
             if (self.board[line[0]] ==
                 self.board[line[1]] ==
                 self.board[line[2]] == 'X') \
