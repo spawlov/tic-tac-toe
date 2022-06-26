@@ -134,7 +134,6 @@ class MyGame(QtWidgets.QWidget):
         self.reset_game()
 
     def line_light(self, cells):
-        print(cells)
         exec('self.ui.pBtn_' + str(cells[0] + 1) +
              '.setStyleSheet("color: red;")')
         exec('self.ui.pBtn_' + str(cells[1] + 1) +
@@ -159,13 +158,11 @@ class MyGame(QtWidgets.QWidget):
         o_list = [bool(cell == 'O') for cell in self.board]
         for line in line_to_win:
             if all([x_list[line[0]], x_list[line[1]], x_list[line[2]]]):
-                print('Win X')
                 self.ui.label.setStyleSheet('color: red;')
                 self.ui.label.setText('Победили "Крестики"')
                 self.line_light(cells=line)
                 break
             elif all([o_list[line[0]], o_list[line[1]], o_list[line[2]]]):
-                print('Win O')
                 self.ui.label.setStyleSheet('color: red;')
                 self.ui.label.setText('Победили "Нолики"')
                 self.line_light(cells=line)
