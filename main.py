@@ -27,9 +27,9 @@ class MyGame(QtWidgets.QWidget):
     def reset_game(self):
         self.board = [' ' for _ in range(9)]
         self._counter = 0
-        for i in range(1, 10):
-            exec('self.ui.pBtn_' + str(i) + '.setEnabled(True)')
-            exec('self.ui.pBtn_' + str(i) + '.setStyleSheet("color: black;")')
+        for r in range(1, 10):
+            exec('self.ui.pBtn_' + str(r) + '.setEnabled(True)')
+            exec('self.ui.pBtn_' + str(r) + '.setStyleSheet("color: black;")')
         self.ui.label.setStyleSheet('color: black;')
         self.redraw()
 
