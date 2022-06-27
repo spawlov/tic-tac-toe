@@ -4,4 +4,4 @@
 
 <p align="center">Графический интерфейс Qt6</p>
 
-<img align="center" src="media/img/screen.png">
+<p align="center"><img align="center" src="media/img/screen.png"></p>
