@@ -1,7 +1,7 @@
-# tic-tac-toe
+# <p align="center">tic-tac-toe</p>
 
-Игра "Крестики - Нолики"
+<p align="center">Игра "Крестики - Нолики"</p>
 
-Графический интерфейс Qt6
+<p align="center">Графический интерфейс Qt6</p>
 
-<img src="media/img/screen.png">
+<img align="center" src="media/img/screen.png">
