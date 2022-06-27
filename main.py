@@ -9,11 +9,11 @@ from x_o import UiForm
 
 def btn_pressed(button):
     def wrapper(self):
-        board_idx = int((str(button).split('_')[1]).split(' ')[0]) - 1
+        btn_no = int((str(button).split('_')[1]).split(' ')[0]) - 1
         if not self._counter % 2:
-            self.board[board_idx] = 'X'
+            self.board[btn_no] = 'X'
         else:
-            self.board[board_idx] = 'O'
+            self.board[btn_no] = 'O'
         button(self)
         self._counter += 1
         self.redraw()
