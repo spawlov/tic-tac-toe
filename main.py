@@ -7,6 +7,19 @@ from PyQt6.QtWidgets import QFrame
 from x_o import UiForm
 
 
+def btn_pressed(button):
+    def wrapper(self):
+        board_idx = int((str(button).split('_')[1]).split(' ')[0]) - 1
+        if not self._counter % 2:
+            self.board[board_idx] = 'X'
+        else:
+            self.board[board_idx] = 'O'
+        button(self)
+        self._counter += 1
+        self.redraw()
+    return wrapper
+
+
 class MyGame(QtWidgets.QWidget):
 
     def __init__(self):
@@ -49,86 +62,41 @@ class MyGame(QtWidgets.QWidget):
             exec('self.ui.pBtn_' + str(btn_i) +
                  '.setText(board[' + str(btn_i - 1) + '])')
 
+    @btn_pressed
     def btn_1(self):
-        if not self._counter % 2:
-            self.board[0] = 'X'
-        else:
-            self.board[0] = 'O'
         self.ui.pBtn_1.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_2(self):
-        if not self._counter % 2:
-            self.board[1] = 'X'
-        else:
-            self.board[1] = 'O'
         self.ui.pBtn_2.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_3(self):
-        if not self._counter % 2:
-            self.board[2] = 'X'
-        else:
-            self.board[2] = 'O'
         self.ui.pBtn_3.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_4(self):
-        if not self._counter % 2:
-            self.board[3] = 'X'
-        else:
-            self.board[3] = 'O'
         self.ui.pBtn_4.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_5(self):
-        if not self._counter % 2:
-            self.board[4] = 'X'
-        else:
-            self.board[4] = 'O'
         self.ui.pBtn_5.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_6(self):
-        if not self._counter % 2:
-            self.board[5] = 'X'
-        else:
-            self.board[5] = 'O'
         self.ui.pBtn_6.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_7(self):
-        if not self._counter % 2:
-            self.board[6] = 'X'
-        else:
-            self.board[6] = 'O'
         self.ui.pBtn_7.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_8(self):
-        if not self._counter % 2:
-            self.board[7] = 'X'
-        else:
-            self.board[7] = 'O'
         self.ui.pBtn_8.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
+    @btn_pressed
     def btn_9(self):
-        if not self._counter % 2:
-            self.board[8] = 'X'
-        else:
-            self.board[8] = 'O'
         self.ui.pBtn_9.setEnabled(False)
-        self._counter += 1
-        self.redraw()
 
     def btn_10(self):
         self.reset_game()
@@ -181,6 +149,7 @@ if __name__ == '__main__':
     game.draw_board(game.board)
     game.label_message()
     for i in range(1, 11):
-        exec('game.ui.pBtn_'+str(i)+'.clicked.connect(game.btn_'+str(i)+')')
+        exec('game.ui.pBtn_' + str(i) + '.clicked.connect(game.btn_'
+             + str(i) + ')')
 
     sys.exit(app.exec())
