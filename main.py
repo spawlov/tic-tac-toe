@@ -7,24 +7,11 @@ from PyQt6.QtWidgets import QFrame
 from x_o import UiForm
 
 
-def btn_pressed(button):
-    def wrapper(self):
-        btn_no = int((str(button).split('_')[1]).split(' ')[0]) - 1
-        if not self._counter % 2:
-            self.board[btn_no] = 'X'
-        else:
-            self.board[btn_no] = 'O'
-        button(self)
-        self._counter += 1
-        self.redraw()
-    return wrapper
-
-
 class MyGame(QtWidgets.QWidget):
 
     def __init__(self):
         super(MyGame, self).__init__()
-        self.board = []
+        self.board = None
         self._counter = 0
         self.ui = UiForm()
         self.ui.setupUi(self)
@@ -62,41 +49,15 @@ class MyGame(QtWidgets.QWidget):
             exec('self.ui.pBtn_' + str(btn_i) +
                  '.setText(board[' + str(btn_i - 1) + '])')
 
-    @btn_pressed
-    def btn_1(self):
-        self.ui.pBtn_1.setEnabled(False)
-
-    @btn_pressed
-    def btn_2(self):
-        self.ui.pBtn_2.setEnabled(False)
-
-    @btn_pressed
-    def btn_3(self):
-        self.ui.pBtn_3.setEnabled(False)
-
-    @btn_pressed
-    def btn_4(self):
-        self.ui.pBtn_4.setEnabled(False)
-
-    @btn_pressed
-    def btn_5(self):
-        self.ui.pBtn_5.setEnabled(False)
-
-    @btn_pressed
-    def btn_6(self):
-        self.ui.pBtn_6.setEnabled(False)
-
-    @btn_pressed
-    def btn_7(self):
-        self.ui.pBtn_7.setEnabled(False)
-
-    @btn_pressed
-    def btn_8(self):
-        self.ui.pBtn_8.setEnabled(False)
-
-    @btn_pressed
-    def btn_9(self):
-        self.ui.pBtn_9.setEnabled(False)
+    for btn_no in range(1, 10):
+        exec('def btn_' + str(btn_no) + '(self):\n'
+             '    if not self._counter % 2:\n'
+             '        self.board[' + str(btn_no - 1) + '] = "X"\n'
+             '    else:\n'
+             '        self.board[' + str(btn_no - 1) + '] = "O"\n'
+             '    self.ui.pBtn_' + str(btn_no) + '.setEnabled(False)\n'
+             '    self._counter += 1\n'
+             '    self.redraw()')
 
     def btn_10(self):
         self.reset_game()
