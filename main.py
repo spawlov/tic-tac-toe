@@ -19,10 +19,10 @@ class MyGame(QtWidgets.QWidget):
         self.setWindowTitle('Game Tic-Tac-Toe ("Skill Factory" B5.6)')
 
         self.ui.label.setFrameShape(QFrame.Shape.StyledPanel)
-        myFont = QtGui.QFont()
-        myFont.setFamily('Calibri, Tahoma, Arial, Helvetica')
-        myFont.setPointSizeF(14)
-        self.ui.label.setFont(myFont)
+        label_font = QtGui.QFont()
+        label_font.setFamily('Calibri, Tahoma, Arial, Helvetica')
+        label_font.setPointSizeF(14)
+        self.ui.label.setFont(label_font)
 
     def reset_game(self):
         self.board = [' ' for _ in range(9)]
@@ -63,12 +63,9 @@ class MyGame(QtWidgets.QWidget):
         self.reset_game()
 
     def line_light(self, cells):
-        exec('self.ui.pBtn_' + str(cells[0] + 1) +
-             '.setStyleSheet("color: red;")')
-        exec('self.ui.pBtn_' + str(cells[1] + 1) +
-             '.setStyleSheet("color: red;")')
-        exec('self.ui.pBtn_' + str(cells[2] + 1) +
-             '.setStyleSheet("color: red;")')
+        for bt_n in range(3):
+            exec('self.ui.pBtn_' + str(cells[bt_n] + 1) +
+                 '.setStyleSheet("color: red;")')
         for en in range(1, 10):
             exec('self.ui.pBtn_' + str(en) + '.setEnabled(False)')
 
@@ -86,12 +83,12 @@ class MyGame(QtWidgets.QWidget):
         x_list = [bool(cell == 'X') for cell in self.board]
         o_list = [bool(cell == 'O') for cell in self.board]
         for line in line_to_win:
-            if all([x_list[line[0]], x_list[line[1]], x_list[line[2]]]):
+            if all([x_list[line[idx_x]] for idx_x in range(3)]):
                 self.ui.label.setStyleSheet('color: red;')
                 self.ui.label.setText('Победили "Крестики"')
                 self.line_light(cells=line)
                 break
-            elif all([o_list[line[0]], o_list[line[1]], o_list[line[2]]]):
+            elif all([o_list[line[idx_o]] for idx_o in range(3)]):
                 self.ui.label.setStyleSheet('color: red;')
                 self.ui.label.setText('Победили "Нолики"')
                 self.line_light(cells=line)
