@@ -50,14 +50,16 @@ class MyGame(QtWidgets.QWidget):
                  f'.setText(board[{str(btn_i - 1)}])')
 
     for btn_no in range(1, 10):
-        exec(f'def btn_{str(btn_no)}(self):\n'
-             f'    if not self._counter % 2:\n'
-             f'        self.board[{str(btn_no - 1)}] = "X"\n'
-             f'    else:\n'
-             f'        self.board[{str(btn_no - 1)}] = "O"\n'
-             f'    self.ui.pBtn_{str(btn_no)}.setEnabled(False)\n'
-             f'    self._counter += 1\n'
-             f'    self.redraw()')
+        exec(
+            f'def btn_{str(btn_no)}(self):\n'
+            f'    if not self._counter % 2:\n'
+            f'        self.board[{str(btn_no - 1)}] = "X"\n'
+            f'    else:\n'
+            f'        self.board[{str(btn_no - 1)}] = "O"\n'
+            f'    self.ui.pBtn_{str(btn_no)}.setEnabled(False)\n'
+            f'    self._counter += 1\n'
+            f'    self.redraw()'
+        )
 
     def btn_10(self):
         self.reset_game()
