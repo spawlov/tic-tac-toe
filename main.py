@@ -24,14 +24,15 @@ class MyGame(QtWidgets.QWidget):
         label_font.setPointSizeF(14)
         self.ui.label.setFont(label_font)
 
-    def reset_game(self):
-        self.board = [' ' for _ in range(9)]
-        self._counter = 0
+    @staticmethod
+    def reset_game():
+        game.board = [' ' for _ in range(9)]
+        game._counter = 0
         for r in range(1, 10):
-            exec(f'self.ui.pBtn_{str(r)}.setEnabled(True)')
-            exec(f'self.ui.pBtn_{str(r)}.setStyleSheet("color: black;")')
-        self.ui.label.setStyleSheet('color: black;')
-        self.redraw()
+            exec(f'game.ui.pBtn_{str(r)}.setEnabled(True)')
+            exec(f'game.ui.pBtn_{str(r)}.setStyleSheet("color: black;")')
+        game.ui.label.setStyleSheet('color: black;')
+        game.redraw()
 
     def redraw(self):
         self.draw_board(self.board)
@@ -44,32 +45,33 @@ class MyGame(QtWidgets.QWidget):
         else:
             self.ui.label.setText('Сейчас ход "Ноликов"')
 
-    def draw_board(self, board):
+    @staticmethod
+    def draw_board(board):
         for btn_i in range(1, 10):
-            exec(f'self.ui.pBtn_{str(btn_i)}'
+            exec(f'game.ui.pBtn_{str(btn_i)}'
                  f'.setText(board[{str(btn_i - 1)}])')
 
     for btn_no in range(1, 10):
-        exec(
-            f'def btn_{str(btn_no)}(self):\n'
-            f'    if not self._counter % 2:\n'
-            f'        self.board[{str(btn_no - 1)}] = "X"\n'
-            f'    else:\n'
-            f'        self.board[{str(btn_no - 1)}] = "O"\n'
-            f'    self.ui.pBtn_{str(btn_no)}.setEnabled(False)\n'
-            f'    self._counter += 1\n'
-            f'    self.redraw()'
-        )
+        exec(f'''def btn_{str(btn_no)}(self):
+                    if not self._counter % 2:
+                        self.board[{str(btn_no - 1)}] = "X"
+                    else:
+                        self.board[{str(btn_no - 1)}] = "O"
+                    self.ui.pBtn_{str(btn_no)}.setEnabled(False)
+                    self._counter += 1
+                    self.redraw()'''
+             )
 
     def btn_10(self):
         self.reset_game()
 
-    def line_light(self, cells):
+    @staticmethod
+    def line_light(cells):
         for bt_n in range(3):
-            exec(f'self.ui.pBtn_{str(cells[bt_n] + 1)}'
+            exec(f'game.ui.pBtn_{str(cells[bt_n] + 1)}'
                  f'.setStyleSheet("color: red;")')
         for en in range(1, 10):
-            exec(f'self.ui.pBtn_{str(en)}.setEnabled(False)')
+            exec(f'game.ui.pBtn_{str(en)}.setEnabled(False)')
 
     def check_winner(self):
         line_to_win = (
